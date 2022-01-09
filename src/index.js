@@ -4,12 +4,44 @@ const { generate } = require('astring');
 // A test program that sums the numbers from 0 to 10.
 
 const program = `
+Open = Builtin
+Literal = Builtin
+Nested = Builtin
+Statements = Builtin
+
+symbols = Scope
+    Braces = Nested { }
+    Parens = Nested ( )
+    Brackets = Nested [ ]
+    Quotes = Nested " "
+    SingleQuotes = Nested ' '
+    Increment = Literal ++
+    Add = Literal +
+    For = Literal for
+    LessThan = Literal <
+    EndStatement = Literal ;
+    Assign = Literal =
+
+openSymbols = Open symbols
+
+basics = Scope
+    Let = Parameters pvar Assign pvalue 
+    ForRange = Parameters pi pfrom pto pbody
+        loop = For
+            iteration = Parens
+                init = Let pi pfrom EndStatement
+                cond = pi LessThan pto EndStatement
+                incr = pi Increment
+            body = Braces
+                pbody
+
 myscope = Scope
-    sum = Let sum 0
-    i = Let i 0
-    iloop = ForRange i 0 10
-        adder = Add sum i
-        assignsum = Assign sum adder
+    sumDecl = Let sum 0
+    iDecl = Let i 0
+    iBody = Statements
+        adder = sum Add i
+        assignSum = Assign sum adder
+    iLoop = ForRange i 0 10 iBody
     printsum = Print sum
     program = Sequence iloop printsum
 
