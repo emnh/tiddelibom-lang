@@ -25,15 +25,22 @@ symbols = Scope
 openSymbols = Open symbols
 
 basics = Scope
-    Let = Parameters pvar Assign pvalue 
+    Let = Parameters pvar Assign pvalue EndStatement
+    Print = Parameters pvalue EndStatement
+        consoleLog = console.log
+            outerArguments = Parens
+                innerArguments = pvalue
+            endStatement = EndStatement
     ForRange = Parameters pi pfrom pto pbody
         loop = For
             iteration = Parens
                 init = Let pi pfrom EndStatement
                 cond = pi LessThan pto EndStatement
                 incr = pi Increment
-            body = Braces
-                pbody
+            outerBody = Braces
+                innerBody = pbody
+
+openBasics = Open basics
 
 myscope = Scope
     sumDecl = Let sum 0
@@ -42,7 +49,7 @@ myscope = Scope
         adder = sum Add i
         assignSum = Assign sum adder
     iLoop = ForRange i 0 10 iBody
-    printsum = Print sum
+    printSum = Print sum
     program = Sequence iloop printsum
 
 # After end of scope, program is now an assignable name again.
