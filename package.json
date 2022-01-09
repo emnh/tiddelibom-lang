@@ -1,0 +1,22 @@
+{
+  "name": "tiddelibom-lang",
+  "version": "1.0.0",
+  "description": "The Infinitely Dumb Extensible Programming Language",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emnh/tiddelibom-lang.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emnh/tiddelibom-lang/issues"
+  },
+  "homepage": "https://github.com/emnh/tiddelibom-lang#readme",
+  "dependencies": {
+    "astring": "^1.8.1"
+  }
+}
